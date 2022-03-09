@@ -43,3 +43,37 @@ select:focus {
     background-color: orange;
     color: #fff;
 }
+
+.block {
+    border: 1px solid #000;
+    min-height: 130px;
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 60px solid transparent;
+    border-right: 60px solid transparent;
+    border-bottom: 60px solid black;
+}
+
+.square {
+    width: 60px;
+    height: 60px;
+    background-color: black;
+}
+
+.parallelogram  {
+    width: 110px;
+    height: 60px;
+    transform: skew(20deg);
+    background: red;
+}
+
+.trapezoid {
+    height: 0;
+    width: 100px;
+    border-bottom: 80px solid red;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+}
