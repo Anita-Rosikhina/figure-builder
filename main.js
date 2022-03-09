@@ -4,6 +4,11 @@ let serialNumber = document.form.number
 let typeFigure = document.form.type
 let rotation = document.form.rotation
 let color = document.form.color
+let date = new Date()
+let hours = date.getHours()
+let minutes = date.getMinutes()
+
+// console.log(date.getHours(), date.getMinutes())
 
 btnSubmit.addEventListener('click', () => {
     createElement(serialNumber.value,typeFigure.value, rotation.value, color.value)
@@ -19,6 +24,7 @@ function createElement (serialNumber, typeFigure, rotation, color) {
                         class="triangle"
                         style="border-bottom-color: ${color}; animation-name: ${rotation}">
                     </div>
+                    <p>${hours}:${minutes}</p>
                 </div>`
             break
         case 'square':
@@ -29,6 +35,7 @@ function createElement (serialNumber, typeFigure, rotation, color) {
                     class="square"
                     style="background: ${color}; animation-name: ${rotation}">
                 </div>
+                <p>${hours}:${minutes}</p>
             </div>`
         break
         case 'parallelogram':
@@ -39,6 +46,7 @@ function createElement (serialNumber, typeFigure, rotation, color) {
                     class="parallelogram"
                     style="background: ${color}; animation-name: ${rotation}">
                 </div>
+                <p>${hours}:${minutes}</p>
             </div>`
         break
         case 'trapezoid':
@@ -49,6 +57,7 @@ function createElement (serialNumber, typeFigure, rotation, color) {
                     class="trapezoid"
                     style="border-bottom-color: ${color}; animation-name: ${rotation}">
                 </div>
+                <p>${hours}:${minutes}</p>
             </div>`
         break
     }
