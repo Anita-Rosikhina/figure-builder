@@ -9,12 +9,6 @@
     padding: 20px;
 }
 
-/*styles for list*/
-
-.list {
-    flex: 3;
-}
-
 /*styles for form*/
 
 .form {
@@ -44,6 +38,12 @@ select:focus {
     color: #fff;
 }
 
+/*styles for list*/
+
+.list {
+    flex: 3;
+}
+
 .block {
     border: 1px solid #000;
     min-height: 130px;
@@ -54,26 +54,71 @@ select:focus {
     height: 0;
     border-left: 60px solid transparent;
     border-right: 60px solid transparent;
-    border-bottom: 60px solid black;
+    border-bottom: 60px solid;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
 }
 
 .square {
     width: 60px;
     height: 60px;
-    background-color: black;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    /*background-color: black;*/
 }
 
 .parallelogram  {
     width: 110px;
     height: 60px;
     transform: skew(20deg);
-    background: red;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    /*background: red;*/
 }
 
 .trapezoid {
     height: 0;
     width: 100px;
-    border-bottom: 80px solid red;
+    border-bottom: 80px solid;
     border-left: 25px solid transparent;
     border-right: 25px solid transparent;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+/*animation*/
+@keyframes toTheRight {
+    25% {
+        transform: rotate(90deg);
+    }
+
+    50% {
+        transform: rotate(180deg);
+    }
+
+    75% {
+        transform: rotate(270deg);
+    }
+
+    100% {
+        transform: rotate(350deg);
+    }
+}
+
+@keyframes toTheLeft {
+    25% {
+        transform: rotate(-90deg);
+    }
+
+    50% {
+        transform: rotate(-180deg);
+    }
+
+    75% {
+        transform: rotate(-270deg);
+    }
+
+    100% {
+        transform: rotate(-350deg);
+    }
 }

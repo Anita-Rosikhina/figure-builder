@@ -15,32 +15,40 @@ function createElement (serialNumber, typeFigure, rotation, color) {
             list.innerHTML += `
                 <div class="block">
                     <p>${serialNumber}</p>
-                    <div class="triangle" style="border-bottom-color: ${color}"></div>
-                    ${rotation}, ${color}
+                    <div
+                        class="triangle"
+                        style="border-bottom-color: ${color}; animation-name: ${rotation}">
+                    </div>
                 </div>`
             break
         case 'square':
             list.innerHTML += `
             <div class="block">
                 <p>${serialNumber}</p>
-                <div class="square" style="background: ${color}"></div>
-                ${rotation}, ${color}
+                <div
+                    class="square"
+                    style="background: ${color}; animation-name: ${rotation}">
+                </div>
             </div>`
         break
         case 'parallelogram':
             list.innerHTML += `
             <div class="block">
                 <p>${serialNumber}</p>
-                <div class="parallelogram" style="background: ${color}"></div>
-                ${rotation}
+                <div
+                    class="parallelogram"
+                    style="background: ${color}; animation-name: ${rotation}">
+                </div>
             </div>`
         break
         case 'trapezoid':
             list.innerHTML += `
             <div class="block">
                 <p>${serialNumber}</p>
-                <div class="trapezoid" style="border-bottom-color: ${color}"></div>
-                ${rotation}
+                <div
+                    class="trapezoid"
+                    style="border-bottom-color: ${color}; animation-name: ${rotation}">
+                </div>
             </div>`
         break
     }
