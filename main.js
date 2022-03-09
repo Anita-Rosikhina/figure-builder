@@ -10,6 +10,7 @@ let minutes = date.getMinutes()
 
 btnSubmit.addEventListener('click', () => {
     createElement(serialNumber.value,typeFigure.value, rotation.value, color.value)
+    reset()
 })
 
 function createElement (serialNumber, typeFigure, rotation, color) {
@@ -59,4 +60,8 @@ function createElement (serialNumber, typeFigure, rotation, color) {
             </div>`
         break
     }
+}
+
+function reset() {
+    document.form.reset()
 }
