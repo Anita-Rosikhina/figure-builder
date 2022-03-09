@@ -8,8 +8,6 @@ let date = new Date()
 let hours = date.getHours()
 let minutes = date.getMinutes()
 
-// console.log(date.getHours(), date.getMinutes())
-
 btnSubmit.addEventListener('click', () => {
     createElement(serialNumber.value,typeFigure.value, rotation.value, color.value)
 })
