@@ -114,7 +114,6 @@ function reset() {
 function disabledBtnSubmit() {
     const arr = Array.from(document.querySelectorAll('.block'))
     if(arr.length >= 10) {
-        // btnSubmit.setAttribute('disabled', 'disabled')
         btnSubmit.disabled = true
         btnSubmit.classList.add('disabled')
     } else {
