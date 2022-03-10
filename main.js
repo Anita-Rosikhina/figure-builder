@@ -104,8 +104,21 @@ function updateSelectOptions() {
     availableSerialNumbers.forEach(el => {
         select.innerHTML += `<option value="${el}">${el}</option>`
     })
+    disabledBtnSubmit()
 }
 
 function reset() {
     document.form.reset()
+}
+
+function disabledBtnSubmit() {
+    const arr = Array.from(document.querySelectorAll('.block'))
+    if(arr.length >= 10) {
+        // btnSubmit.setAttribute('disabled', 'disabled')
+        btnSubmit.disabled = true
+        btnSubmit.classList.add('disabled')
+    } else {
+        btnSubmit.disabled = false
+        btnSubmit.classList.remove('disabled')
+    }
 }

@@ -39,6 +39,11 @@ select:focus {
     cursor: pointer;
 }
 
+.disabled {
+    background-color: gray;
+    color: darkgray;
+}
+
 /*styles for list*/
 
 .list {
