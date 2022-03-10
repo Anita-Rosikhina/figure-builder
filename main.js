@@ -24,8 +24,10 @@ function createElement (serialNumber, typeFigure, rotation, color) {
                         class="triangle"
                         style="border-bottom-color: ${color}; animation-name: ${rotation}">
                     </div>
-                    <p>${hours}:${minutes}</p>
-                    <button class="btn_delete" onclick="removeElement()">Х</button>
+                    <div class="block_btn_delete_date">
+                        <p>${hours}:${minutes}</p>
+                        <button class="btn_delete" onclick="removeElement()">Х</button>
+                    </div>
                 </div>`
             break
         case 'square':
@@ -36,8 +38,10 @@ function createElement (serialNumber, typeFigure, rotation, color) {
                     class="square"
                     style="background: ${color}; animation-name: ${rotation}">
                 </div>
-                <p>${hours}:${minutes}</p>
-                <button class="btn_delete" onclick="removeElement()">Х</button>
+                <div class="block_btn_delete_date">
+                    <p>${hours}:${minutes}</p>
+                    <button class="btn_delete" onclick="removeElement()">Х</button>
+                </div>
             </div>`
         break
         case 'parallelogram':
@@ -48,20 +52,24 @@ function createElement (serialNumber, typeFigure, rotation, color) {
                     class="parallelogram"
                     style="background: ${color}; animation-name: ${rotation}">
                 </div>
-                <p>${hours}:${minutes}</p>
-                <button class="btn_delete" onclick="removeElement()">Х</button>
+                <div class="block_btn_delete_date">
+                    <p>${hours}:${minutes}</p>
+                    <button class="btn_delete" onclick="removeElement()">Х</button>
+                </div>              
             </div>`
         break
         case 'trapezoid':
             list.innerHTML += `
             <div class="block" data-number="${serialNumber}">
-                <p>number: ${serialNumber}</p>
+                <p>${serialNumber}</p>
                 <div
                     class="trapezoid"
                     style="border-bottom-color: ${color}; animation-name: ${rotation}">
                 </div>
-                <p>${hours}:${minutes}</p>
-                <button class="btn_delete" onclick="removeElement()">Х</button>
+                <div class="block_btn_delete_date">
+                    <p>${hours}:${minutes}</p>
+                    <button class="btn_delete" onclick="removeElement()">Х</button>
+                </div>                
             </div>`
         break
     }

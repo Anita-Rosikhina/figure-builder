@@ -36,6 +36,7 @@ select:focus {
     border-radius: 5px;
     background-color: orange;
     color: #fff;
+    cursor: pointer;
 }
 
 /*styles for list*/
@@ -45,15 +46,37 @@ select:focus {
 }
 
 .block {
-    border: 1px solid #000;
+    display: flex;
+    justify-content: space-between;
     min-height: 130px;
+    margin: 0 0 30px;
+    padding: 20px;
+    border: 1px solid orange;
+    font-family: Monospaced, sans-serif;
+    color: #837967;
+}
+
+.block_btn_delete_date {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.btn_delete {
+    width: 25px;
+    border: none;
+    color: red;
+    background: inherit;
+    cursor: pointer;
 }
 
 .triangle {
     width: 0;
     height: 0;
-    border-left: 60px solid transparent;
-    border-right: 60px solid transparent;
+    margin: 13px 0;
+    border-left: 40px solid transparent;
+    border-right: 40px solid transparent;
     border-bottom: 60px solid;
     animation-duration: 2s;
     animation-iteration-count: infinite;
@@ -64,22 +87,22 @@ select:focus {
     height: 60px;
     animation-duration: 2s;
     animation-iteration-count: infinite;
-    /*background-color: black;*/
 }
 
 .parallelogram  {
-    width: 110px;
-    height: 60px;
+    width: 100px;
+    height: 50px;
+    margin: 22px 0;
     transform: skew(20deg);
     animation-duration: 2s;
     animation-iteration-count: infinite;
-    /*background: red;*/
 }
 
 .trapezoid {
     height: 0;
-    width: 100px;
-    border-bottom: 80px solid;
+    width: 80px;
+    margin: 10px 0;
+    border-bottom: 45px solid;
     border-left: 25px solid transparent;
     border-right: 25px solid transparent;
     animation-duration: 2s;
