@@ -11,6 +11,7 @@ let minutes = date.getMinutes()
 btnSubmit.addEventListener('click', () => {
     createElement(serialNumber.value,typeFigure.value, rotation.value, color.value)
     reset()
+    resort()
 })
 
 function createElement (serialNumber, typeFigure, rotation, color) {
@@ -72,6 +73,16 @@ function removeElement() {
             document.querySelector(`.block[data-number="${el.attributes['data-number'].value}"]`).remove()
         })
     })
+}
+
+function resort() {
+    const arr = Array.from(document.querySelectorAll('.block'))
+    let sorted = arr.sort((a, b) => {
+        if(+a.attributes['data-number'].value < +b.attributes['data-number'].value) return -1;
+        if(+a.attributes['data-number'].value > +b.attributes['data-number'].value) return 1;
+        return 0;
+    })
+    sorted.forEach(e => list.appendChild(e));
 }
 
 function reset() {
