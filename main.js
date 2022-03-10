@@ -1,5 +1,7 @@
 let list = document.querySelector('.list')
+let block = document.querySelectorAll('.block')
 let btnSubmit = document.querySelector('.btn_submit')
+let btnDelete = document.querySelector('.btn_delete')
 let serialNumber = document.form.number
 let typeFigure = document.form.type
 let rotation = document.form.rotation
@@ -17,46 +19,50 @@ function createElement (serialNumber, typeFigure, rotation, color) {
     switch (typeFigure) {
         case 'triangle':
             list.innerHTML += `
-                <div class="block">
+                <div class="block" data-number="${serialNumber}">
                     <p>${serialNumber}</p>
                     <div
                         class="triangle"
                         style="border-bottom-color: ${color}; animation-name: ${rotation}">
                     </div>
                     <p>${hours}:${minutes}</p>
+                    <button class="btn_delete" onclick="removeElement()">Х</button>
                 </div>`
             break
         case 'square':
             list.innerHTML += `
-            <div class="block">
+            <div class="block" data-number="${serialNumber}">
                 <p>${serialNumber}</p>
                 <div
                     class="square"
                     style="background: ${color}; animation-name: ${rotation}">
                 </div>
                 <p>${hours}:${minutes}</p>
+                <button class="btn_delete" onclick="removeElement()">Х</button>
             </div>`
         break
         case 'parallelogram':
             list.innerHTML += `
-            <div class="block">
+            <div class="block" data-number="${serialNumber}">
                 <p>${serialNumber}</p>
                 <div
                     class="parallelogram"
                     style="background: ${color}; animation-name: ${rotation}">
                 </div>
                 <p>${hours}:${minutes}</p>
+                <button class="btn_delete" onclick="removeElement()">Х</button>
             </div>`
         break
         case 'trapezoid':
             list.innerHTML += `
-            <div class="block">
-                <p>${serialNumber}</p>
+            <div class="block" data-number="${serialNumber}">
+                <p>number: ${serialNumber}</p>
                 <div
                     class="trapezoid"
                     style="border-bottom-color: ${color}; animation-name: ${rotation}">
                 </div>
                 <p>${hours}:${minutes}</p>
+                <button class="btn_delete" onclick="removeElement()">Х</button>
             </div>`
         break
     }
