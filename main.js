@@ -1,7 +1,5 @@
 let list = document.querySelector('.list')
-let block = document.querySelectorAll('.block')
 let btnSubmit = document.querySelector('.btn_submit')
-let btnDelete = document.querySelector('.btn_delete')
 let serialNumber = document.form.number
 let typeFigure = document.form.type
 let rotation = document.form.rotation
@@ -66,6 +64,14 @@ function createElement (serialNumber, typeFigure, rotation, color) {
             </div>`
         break
     }
+}
+
+function removeElement() {
+    document.querySelectorAll('.block').forEach((el, i) => {
+        document.querySelectorAll('.btn_delete')[i].addEventListener('click', () => {
+            document.querySelector(`.block[data-number="${el.attributes['data-number'].value}"]`).remove()
+        })
+    })
 }
 
 function reset() {
