@@ -5,9 +5,6 @@ let serialNumber = document.form.number
 let typeFigure = document.form.type
 let rotation = document.form.rotation
 let color = document.form.color
-let date = new Date()
-let hours = date.getHours()
-let minutes = date.getMinutes()
 
 // submit
 btnSubmit.addEventListener('click', () => {
@@ -27,8 +24,8 @@ function createElement (serialNumber, typeFigure, rotation, color) {
                         class="triangle"
                         style="border-bottom-color: ${color}; animation-name: ${rotation}">
                     </div>
-                    <div class="block_btn_delete_date">
-                        <p>${hours}:${minutes}</p>
+                    <div class="block_btn_delete_create_date">
+                        <p>${new Date().toLocaleTimeString()}</p>
                         <button class="btn_delete" onclick="removeElement()">Х</button>
                     </div>
                 </div>`
@@ -41,8 +38,8 @@ function createElement (serialNumber, typeFigure, rotation, color) {
                     class="square"
                     style="background: ${color}; animation-name: ${rotation}">
                 </div>
-                <div class="block_btn_delete_date">
-                    <p>${hours}:${minutes}</p>
+                <div class="block_btn_delete_create_date">
+                    <p>${new Date().toLocaleTimeString()}</p>
                     <button class="btn_delete" onclick="removeElement()">Х</button>
                 </div>
             </div>`
@@ -55,8 +52,8 @@ function createElement (serialNumber, typeFigure, rotation, color) {
                     class="parallelogram"
                     style="background: ${color}; animation-name: ${rotation}">
                 </div>
-                <div class="block_btn_delete_date">
-                    <p>${hours}:${minutes}</p>
+                <div class="block_btn_delete_create_date">
+                    <p>${new Date().toLocaleTimeString()}</p>
                     <button class="btn_delete" onclick="removeElement()">Х</button>
                 </div>              
             </div>`
@@ -69,8 +66,8 @@ function createElement (serialNumber, typeFigure, rotation, color) {
                     class="trapezoid"
                     style="border-bottom-color: ${color}; animation-name: ${rotation}">
                 </div>
-                <div class="block_btn_delete_date">
-                    <p>${hours}:${minutes}</p>
+                <div class="block_btn_delete_create_date">
+                    <p>${new Date().toLocaleTimeString()}</p>
                     <button class="btn_delete" onclick="removeElement()">Х</button>
                 </div>                
             </div>`

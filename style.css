@@ -56,7 +56,7 @@ select:focus {
     color: #837967;
 }
 
-.block_btn_delete_date {
+.block_btn_delete_create_date {
     display: flex;
     flex-direction: column-reverse;
     justify-content: space-between;
