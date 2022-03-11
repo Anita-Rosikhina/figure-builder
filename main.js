@@ -8,7 +8,7 @@ let color = document.form.color
 
 // submit
 btnSubmit.addEventListener('click', () => {
-    createElement(serialNumber.value,typeFigure.value, rotation.value, color.value)
+    createElement(serialNumber.value, typeFigure.value, rotation.value, color.value)
     reset()
     resort()
     updateSelectOptions()
@@ -17,60 +17,16 @@ btnSubmit.addEventListener('click', () => {
 function createElement (serialNumber, typeFigure, rotation, color) {
     switch (typeFigure) {
         case 'triangle':
-            list.innerHTML += `
-                <div class="block" data-number="${serialNumber}">
-                    <p>${serialNumber}</p>
-                    <div
-                        class="triangle"
-                        style="border-bottom-color: ${color}; animation-name: ${rotation}">
-                    </div>
-                    <div class="block_btn_delete_create_date">
-                        <p>${new Date().toLocaleTimeString()}</p>
-                        <button class="btn_delete" onclick="removeElement()">Х</button>
-                    </div>
-                </div>`
-            break
+            createTriangle(serialNumber, rotation, color)
+        break
         case 'square':
-            list.innerHTML += `
-            <div class="block" data-number="${serialNumber}">
-                <p>${serialNumber}</p>
-                <div
-                    class="square"
-                    style="background: ${color}; animation-name: ${rotation}">
-                </div>
-                <div class="block_btn_delete_create_date">
-                    <p>${new Date().toLocaleTimeString()}</p>
-                    <button class="btn_delete" onclick="removeElement()">Х</button>
-                </div>
-            </div>`
+            createSquare(serialNumber, typeFigure, rotation, color)
         break
         case 'parallelogram':
-            list.innerHTML += `
-            <div class="block" data-number="${serialNumber}">
-                <p>${serialNumber}</p>
-                <div
-                    class="parallelogram"
-                    style="background: ${color}; animation-name: ${rotation}">
-                </div>
-                <div class="block_btn_delete_create_date">
-                    <p>${new Date().toLocaleTimeString()}</p>
-                    <button class="btn_delete" onclick="removeElement()">Х</button>
-                </div>              
-            </div>`
+            createParallelogram(serialNumber, typeFigure, rotation, color)
         break
         case 'trapezoid':
-            list.innerHTML += `
-            <div class="block" data-number="${serialNumber}">
-                <p>${serialNumber}</p>
-                <div
-                    class="trapezoid"
-                    style="border-bottom-color: ${color}; animation-name: ${rotation}">
-                </div>
-                <div class="block_btn_delete_create_date">
-                    <p>${new Date().toLocaleTimeString()}</p>
-                    <button class="btn_delete" onclick="removeElement()">Х</button>
-                </div>                
-            </div>`
+            createTrapezoid(serialNumber, typeFigure, rotation, color)
         break
     }
 }
@@ -82,6 +38,66 @@ function removeElement() {
             updateSelectOptions()
         })
     })
+}
+
+function createTriangle(serialNumber, rotation, color) {
+    list.innerHTML += `
+        <div class="block" data-number="${serialNumber}">
+            <p>${serialNumber}</p>
+            <div
+                class="triangle"
+                style="border-bottom-color: ${color}; animation-name: ${rotation}">
+            </div>
+            <div class="block_btn_delete_create_date">
+                <p>${new Date().toLocaleTimeString()}</p>
+                <button class="btn_delete" onclick="removeElement()">Х</button>
+            </div>
+        </div>`
+}
+
+function createSquare(serialNumber, rotation, color) {
+    list.innerHTML += `
+        <div class="block" data-number="${serialNumber}">
+            <p>${serialNumber}</p>
+            <div
+                class="square"
+                style="background: ${color}; animation-name: ${rotation}">
+            </div>
+            <div class="block_btn_delete_create_date">
+                <p>${new Date().toLocaleTimeString()}</p>
+                <button class="btn_delete" onclick="removeElement()">Х</button>
+            </div>
+        </div>`
+}
+
+function createParallelogram(serialNumber, rotation, color) {
+    list.innerHTML += `
+        <div class="block" data-number="${serialNumber}">
+            <p>${serialNumber}</p>
+            <div
+                class="parallelogram"
+                style="background: ${color}; animation-name: ${rotation}">
+            </div>
+            <div class="block_btn_delete_create_date">
+                <p>${new Date().toLocaleTimeString()}</p>
+                <button class="btn_delete" onclick="removeElement()">Х</button>
+            </div>              
+        </div>`
+}
+
+function createTrapezoid(serialNumber, rotation, color) {
+    list.innerHTML += `
+        <div class="block" data-number="${serialNumber}">
+            <p>${serialNumber}</p>
+            <div
+                class="trapezoid"
+                style="border-bottom-color: ${color}; animation-name: ${rotation}">
+            </div>
+            <div class="block_btn_delete_create_date">
+                <p>${new Date().toLocaleTimeString()}</p>
+                <button class="btn_delete" onclick="removeElement()">Х</button>
+            </div>                
+        </div>`
 }
 
 function resort() {
