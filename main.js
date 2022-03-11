@@ -1,14 +1,14 @@
 let list = document.querySelector('.list')
 let btnSubmit = document.querySelector('.btn_submit')
 let select = document.querySelector('select')
-let serialNumber = document.form.number
+let serialNumberSelect = document.form.number
 let typeFigure = document.form.type
 let rotation = document.form.rotation
 let color = document.form.color
 const AMOUNT_OF_OPTIONS = 10
 
 btnSubmit.addEventListener('click', () => {
-    createElement(serialNumber.value, typeFigure.value, rotation.value, color.value)
+    createElement(serialNumberSelect.value, typeFigure.value, rotation.value, color.value)
     reset()
     resort()
     updateSelectOptions()
@@ -31,13 +31,9 @@ function createElement(serialNumber, typeFigure, rotation, color) {
     }
 }
 
-function removeElement() {
-    document.querySelectorAll('.block').forEach((el, i) => {
-        document.querySelectorAll('.btn_delete')[i].addEventListener('click', () => {
-            document.querySelector(`.block[data-number="${el.attributes['data-number'].value}"]`).remove()
-            updateSelectOptions()
-        })
-    })
+function removeElement(serialNumber) {
+    document.querySelector(`.block[data-number="${serialNumber}"]`).remove()
+    updateSelectOptions()
 }
 
 function createTriangle(serialNumber, rotation, color) {
@@ -50,7 +46,7 @@ function createTriangle(serialNumber, rotation, color) {
             </div>
             <div class="block_btn_delete_create_date">
                 <p>${new Date().toLocaleTimeString()}</p>
-                <button class="btn_delete" onclick="removeElement()">Х</button>
+                <button class="btn_delete" onclick="removeElement(${serialNumber})">Х</button>
             </div>
         </div>`
 }
@@ -65,7 +61,7 @@ function createSquare(serialNumber, rotation, color) {
             </div>
             <div class="block_btn_delete_create_date">
                 <p>${new Date().toLocaleTimeString()}</p>
-                <button class="btn_delete" onclick="removeElement()">Х</button>
+                <button class="btn_delete" onclick="removeElement(${serialNumber})">Х</button>
             </div>
         </div>`
 }
@@ -80,7 +76,7 @@ function createParallelogram(serialNumber, rotation, color) {
             </div>
             <div class="block_btn_delete_create_date">
                 <p>${new Date().toLocaleTimeString()}</p>
-                <button class="btn_delete" onclick="removeElement()">Х</button>
+                <button class="btn_delete" onclick="removeElement(${serialNumber})">Х</button>
             </div>              
         </div>`
 }
@@ -95,7 +91,7 @@ function createTrapezoid(serialNumber, rotation, color) {
             </div>
             <div class="block_btn_delete_create_date">
                 <p>${new Date().toLocaleTimeString()}</p>
-                <button class="btn_delete" onclick="removeElement()">Х</button>
+                <button class="btn_delete" onclick="removeElement(${serialNumber})">Х</button>
             </div>                
         </div>`
 }
