@@ -129,15 +129,9 @@ function reset() {
     document.form.reset()
 }
 
-function disabledBtnSubmit() {
-    const arr = Array.from(document.querySelectorAll('.block'))
-    if(arr.length >= AMOUNT_OF_OPTIONS) {
-        btnSubmit.disabled = true
-        btnSubmit.classList.add('disabled')
-    } else {
-        btnSubmit.disabled = false
-        btnSubmit.classList.remove('disabled')
-    }
+function listenSubmitBtnState() {
+    const blocks = Array.from(document.querySelectorAll('.block'))
+    btnSubmit.disabled = blocks.length >= AMOUNT_OF_OPTIONS
 }
 
 function initForm(count) {
