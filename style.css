@@ -39,7 +39,7 @@ select:focus {
     cursor: pointer;
 }
 
-.disabled {
+.btn_submit:disabled {
     background-color: gray;
     color: darkgray;
 }

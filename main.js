@@ -109,16 +109,20 @@ function resort() {
 }
 
 function updateSelectOptions() {
-    const arr = Array.from(document.querySelectorAll('.block'))
-    const existingSerialNumbers = arr.map(el => +el.attributes['data-number'].value)
+    const blocks = Array.from(document.querySelectorAll('.block'))
+    const existingSerialNumbers = blocks.map(el => +el.attributes['data-number'].value)
     const availableSerialNumbers =
         Array.from({length: AMOUNT_OF_OPTIONS}, (_, i) => i + 1)
             .filter(number => !existingSerialNumbers.includes(number))
+    updateSelectView(availableSerialNumbers)
+    listenSubmitBtnState()
+}
+
+function updateSelectView(availableSerialNumbers) {
     select.innerHTML = ''
     availableSerialNumbers.forEach(el => {
         select.innerHTML += `<option value="${el}">${el}</option>`
     })
-    disabledBtnSubmit()
 }
 
 function reset() {
