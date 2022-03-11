@@ -5,8 +5,8 @@ let serialNumber = document.form.number
 let typeFigure = document.form.type
 let rotation = document.form.rotation
 let color = document.form.color
+const AMOUNT_OF_OPTIONS = 10
 
-// submit
 btnSubmit.addEventListener('click', () => {
     createElement(serialNumber.value, typeFigure.value, rotation.value, color.value)
     reset()
@@ -14,19 +14,19 @@ btnSubmit.addEventListener('click', () => {
     updateSelectOptions()
 })
 
-function createElement (serialNumber, typeFigure, rotation, color) {
+function createElement(serialNumber, typeFigure, rotation, color) {
     switch (typeFigure) {
         case 'triangle':
             createTriangle(serialNumber, rotation, color)
         break
         case 'square':
-            createSquare(serialNumber, typeFigure, rotation, color)
+            createSquare(serialNumber, rotation, color)
         break
         case 'parallelogram':
-            createParallelogram(serialNumber, typeFigure, rotation, color)
+            createParallelogram(serialNumber, rotation, color)
         break
         case 'trapezoid':
-            createTrapezoid(serialNumber, typeFigure, rotation, color)
+            createTrapezoid(serialNumber, rotation, color)
         break
     }
 }
@@ -114,7 +114,7 @@ function updateSelectOptions() {
     const arr = Array.from(document.querySelectorAll('.block'))
     const existingSerialNumbers = arr.map(el => +el.attributes['data-number'].value)
     const availableSerialNumbers =
-        Array.from({length: 10}, (_, i) => i + 1)
+        Array.from({length: AMOUNT_OF_OPTIONS}, (_, i) => i + 1)
             .filter(number => !existingSerialNumbers.includes(number))
     select.innerHTML = ''
     availableSerialNumbers.forEach(el => {
@@ -129,7 +129,7 @@ function reset() {
 
 function disabledBtnSubmit() {
     const arr = Array.from(document.querySelectorAll('.block'))
-    if(arr.length >= 10) {
+    if(arr.length >= AMOUNT_OF_OPTIONS) {
         btnSubmit.disabled = true
         btnSubmit.classList.add('disabled')
     } else {
@@ -137,3 +137,12 @@ function disabledBtnSubmit() {
         btnSubmit.classList.remove('disabled')
     }
 }
+
+function initForm(count) {
+    const arr = Array.from({length: count}, (_, i) => i + 1)
+    arr.forEach((number) => {
+        select.innerHTML += `<option value="${number}">${number}</option>`
+    })
+}
+
+initForm(AMOUNT_OF_OPTIONS)
