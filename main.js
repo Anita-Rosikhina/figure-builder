@@ -97,13 +97,15 @@ function createTrapezoid(serialNumber, rotation, color) {
 }
 
 function resort() {
-    const arr = Array.from(document.querySelectorAll('.block'))
-    let sorted = arr.sort((a, b) => {
-        if(+a.attributes['data-number'].value < +b.attributes['data-number'].value) return -1;
-        if(+a.attributes['data-number'].value > +b.attributes['data-number'].value) return 1;
-        return 0;
+    const blocks = Array.from(document.querySelectorAll('.block'))
+    let sortedBlocks = blocks.sort((a, b) => {
+        const prevValue = +a.attributes['data-number'].value
+        const nextValue = +b.attributes['data-number'].value
+        if(prevValue < nextValue) return -1
+        if(prevValue > nextValue) return 1
+        return 0
     })
-    sorted.forEach(e => list.appendChild(e));
+    sortedBlocks.forEach(e => list.appendChild(e))
 }
 
 function updateSelectOptions() {
