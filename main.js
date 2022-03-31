@@ -1,144 +1,140 @@
 let list = document.querySelector('.list')
 let btnSubmit = document.querySelector('.btn_submit')
-let select = document.querySelector('select')
+let serialNumberOption = document.getElementById('serialNumberOption')
+let serialFigureTypesSelect = document.getElementById('serialFigureTypes')
 let serialNumberSelect = document.form.number
 let typeFigure = document.form.type
 let rotation = document.form.rotation
 let color = document.form.color
 const AMOUNT_OF_OPTIONS = 10
+const elements = []
+const figureTypes = ['square', 'triangle', 'parallelogram', 'trapezoid']
 
 btnSubmit.addEventListener('click', () => {
-    createElement(serialNumberSelect.value, typeFigure.value, rotation.value, color.value)
-    reset()
-    resort()
+    elements.push({
+        typeFigure: typeFigure.value,
+        serialNumber: serialNumberSelect.value,
+        rotation: rotation.value,
+        color: color.value,
+        date: new Date().toLocaleTimeString()
+    })
+    resetForm()
+    resortListOfItems()
+    renderListOfItems()
     updateSelectOptions()
 })
 
-function createElement(serialNumber, typeFigure, rotation, color) {
+function createElement({serialNumber, typeFigure, rotation, color, date}) {
     switch (typeFigure) {
         case 'triangle':
-            createTriangle(serialNumber, rotation, color)
-        break
+            return createTriangle({serialNumber, rotation, color, date})
         case 'square':
-            createSquare(serialNumber, rotation, color)
-        break
+            return createSquare({serialNumber, rotation, color, date})
         case 'parallelogram':
-            createParallelogram(serialNumber, rotation, color)
-        break
+            return createParallelogram({serialNumber, rotation, color, date})
         case 'trapezoid':
-            createTrapezoid(serialNumber, rotation, color)
-        break
+            return createTrapezoid({serialNumber, rotation, color, date})
     }
 }
 
 function removeElement(serialNumber) {
-    document.querySelector(`.block[data-number="${serialNumber}"]`).remove()
+    const i = elements.findIndex(el => +el.serialNumber === serialNumber)
+    elements.splice(i, 1)
+    renderListOfItems()
     updateSelectOptions()
 }
 
-function createTriangle(serialNumber, rotation, color) {
-    list.innerHTML += `
-        <div class="block" data-number="${serialNumber}">
+function createTriangle({serialNumber, rotation, color, date}) {
+    const figure = `<div class="triangle" style="border-bottom-color: ${color}; animation-name: ${rotation}"></div>`
+    return generateListItem({figure, serialNumber, date})
+}
+
+function createSquare({serialNumber, rotation, color, date}) {
+    const figure = `<div class="square" style="background: ${color}; animation-name: ${rotation}"></div>`
+    return generateListItem({figure, serialNumber, date})
+}
+
+function createParallelogram({serialNumber, rotation, color, date}) {
+    const figure = `<div class="parallelogram" style="background: ${color}; animation-name: ${rotation}"></div>`
+    return generateListItem({figure, serialNumber, date})
+}
+
+function createTrapezoid({serialNumber, rotation, color, date}) {
+    const figure = `<div class="trapezoid" style="border-bottom-color: ${color}; animation-name: ${rotation}"></div>`
+    return generateListItem({figure, serialNumber, date})
+}
+
+function generateListItem({figure, serialNumber, date}) {
+    return `<div class="block">
             <p>${serialNumber}</p>
-            <div
-                class="triangle"
-                style="border-bottom-color: ${color}; animation-name: ${rotation}">
-            </div>
+            ${figure}
             <div class="block_btn_delete_create_date">
-                <p>${new Date().toLocaleTimeString()}</p>
+                <p>${date}</p>
                 <button class="btn_delete" onclick="removeElement(${serialNumber})">Х</button>
             </div>
         </div>`
 }
 
-function createSquare(serialNumber, rotation, color) {
-    list.innerHTML += `
-        <div class="block" data-number="${serialNumber}">
-            <p>${serialNumber}</p>
-            <div
-                class="square"
-                style="background: ${color}; animation-name: ${rotation}">
-            </div>
-            <div class="block_btn_delete_create_date">
-                <p>${new Date().toLocaleTimeString()}</p>
-                <button class="btn_delete" onclick="removeElement(${serialNumber})">Х</button>
-            </div>
-        </div>`
-}
-
-function createParallelogram(serialNumber, rotation, color) {
-    list.innerHTML += `
-        <div class="block" data-number="${serialNumber}">
-            <p>${serialNumber}</p>
-            <div
-                class="parallelogram"
-                style="background: ${color}; animation-name: ${rotation}">
-            </div>
-            <div class="block_btn_delete_create_date">
-                <p>${new Date().toLocaleTimeString()}</p>
-                <button class="btn_delete" onclick="removeElement(${serialNumber})">Х</button>
-            </div>              
-        </div>`
-}
-
-function createTrapezoid(serialNumber, rotation, color) {
-    list.innerHTML += `
-        <div class="block" data-number="${serialNumber}">
-            <p>${serialNumber}</p>
-            <div
-                class="trapezoid"
-                style="border-bottom-color: ${color}; animation-name: ${rotation}">
-            </div>
-            <div class="block_btn_delete_create_date">
-                <p>${new Date().toLocaleTimeString()}</p>
-                <button class="btn_delete" onclick="removeElement(${serialNumber})">Х</button>
-            </div>                
-        </div>`
-}
-
-function resort() {
-    const blocks = Array.from(document.querySelectorAll('.block'))
-    let sortedBlocks = blocks.sort((a, b) => {
-        const prevValue = +a.attributes['data-number'].value
-        const nextValue = +b.attributes['data-number'].value
+function resortListOfItems() {
+     elements.sort((a, b) => {
+        const prevValue = +a.serialNumber
+        const nextValue = +b.serialNumber
         if(prevValue < nextValue) return -1
         if(prevValue > nextValue) return 1
         return 0
     })
-    sortedBlocks.forEach(e => list.appendChild(e))
+}
+
+function renderListOfItems() {
+    list.innerHTML = ''
+    elements.forEach(el => {
+        list.insertAdjacentHTML('beforeend', this.createElement(el))
+    })
 }
 
 function updateSelectOptions() {
-    const blocks = Array.from(document.querySelectorAll('.block'))
-    const existingSerialNumbers = blocks.map(el => +el.attributes['data-number'].value)
-    const availableSerialNumbers =
-        Array.from({length: AMOUNT_OF_OPTIONS}, (_, i) => i + 1)
-            .filter(number => !existingSerialNumbers.includes(number))
-    updateSelectView(availableSerialNumbers)
-    listenSubmitBtnState()
+    const list = getAvailableSelectNumberOptions()
+    renderSelectOptions(list)
+    disableButton(list)
 }
 
-function updateSelectView(availableSerialNumbers) {
-    select.innerHTML = ''
-    availableSerialNumbers.forEach(el => {
-        select.innerHTML += `<option value="${el}">${el}</option>`
+function getAvailableSelectNumberOptions() {
+    const numberOptions = Array.from({ length: AMOUNT_OF_OPTIONS}, (_, i) => i + 1)
+    const serialNumbers = elements.map(e => +e.serialNumber)
+    return numberOptions.filter(e => !serialNumbers.includes(e))
+}
+
+function renderSelectOptions(list) {
+    serialNumberOption.innerHTML = ''
+    list.forEach(serialNumber => {
+        const option = createOption(serialNumber, serialNumber)
+        serialNumberOption.appendChild(option)
     })
 }
 
-function reset() {
+function resetForm() {
     document.form.reset()
 }
 
-function listenSubmitBtnState() {
-    const blocks = Array.from(document.querySelectorAll('.block'))
-    btnSubmit.disabled = blocks.length >= AMOUNT_OF_OPTIONS
+function disableButton(list) {
+    btnSubmit.disabled = !list.length
 }
 
-function initForm(count) {
-    const arr = Array.from({length: count}, (_, i) => i + 1)
-    arr.forEach((number) => {
-        select.innerHTML += `<option value="${number}">${number}</option>`
+function createOption(value, text) {
+    const option = document.createElement('option')
+    option.value = value
+    option.text = text
+    return option
+}
+
+function generateFigureTypes(types) {
+    types.forEach(el => {
+        serialFigureTypesSelect.appendChild(this.createOption(el, el))
     })
 }
+generateFigureTypes(figureTypes)
 
-initForm(AMOUNT_OF_OPTIONS)
+function initForm() {
+    this.updateSelectOptions()
+}
+initForm()

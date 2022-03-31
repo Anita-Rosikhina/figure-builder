@@ -4,9 +4,15 @@
     box-sizing: border-box;
 }
 
+body {
+    height: 100vh;
+    overflow: hidden;
+}
+
 .content {
     display: flex;
     padding: 20px;
+    min-height: 100vh;
 }
 
 /*styles for form*/
@@ -19,8 +25,8 @@
 }
 
 select {
-    width: 50%;
-    height: 40px;
+    width: 90%;
+    height: 50px;
     margin: 0 0 20px;
     border: 1px solid orange;
 }
@@ -48,6 +54,9 @@ select:focus {
 
 .list {
     flex: 3;
+    height: 100vh;
+    padding-right: 20px;
+    overflow-y: scroll;
 }
 
 .block {
@@ -149,4 +158,13 @@ select:focus {
     100% {
         transform: rotate(-350deg);
     }
+}
+
+.list::-webkit-scrollbar {
+    width: 5px;
+}
+
+.list::-webkit-scrollbar-thumb {
+    background-color: orange;
+    border-radius: 7px;
 }
