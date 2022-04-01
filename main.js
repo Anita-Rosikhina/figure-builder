@@ -1,7 +1,8 @@
 let list = document.querySelector('.list')
 let btnSubmit = document.querySelector('.btn_submit')
-let serialNumberOption = document.getElementById('serialNumberOption')
-let serialFigureTypesSelect = document.getElementById('serialFigureTypes')
+let selectSerialNumber = document.getElementById('selectSerialNumber')
+let selectFigureTypes = document.getElementById('selectFigureTypes')
+let selectColor = document.getElementById('selectColor')
 let serialNumberSelect = document.form.number
 let typeFigure = document.form.type
 let rotation = document.form.rotation
@@ -9,6 +10,7 @@ let color = document.form.color
 const AMOUNT_OF_OPTIONS = 10
 const elements = []
 const figureTypes = ['square', 'triangle', 'parallelogram', 'trapezoid']
+const colorOption = ['black', 'red', 'pink', 'green', 'skyblue', 'yellow', 'greenyellow', 'darkorange', 'darkcyan', 'rebeccapurple']
 
 btnSubmit.addEventListener('click', () => {
     elements.push({
@@ -76,17 +78,13 @@ function generateListItem({figure, serialNumber, date}) {
 }
 
 function resortListOfItems() {
-     elements.sort((a, b) => {
-        const prevValue = +a.serialNumber
-        const nextValue = +b.serialNumber
-        if(prevValue < nextValue) return -1
-        if(prevValue > nextValue) return 1
-        return 0
-    })
+    elements.sort((a, b) => +a.serialNumber - +b.serialNumber)
 }
 
 function renderListOfItems() {
-    list.innerHTML = ''
+    while (list.firstChild) {
+        list.removeChild(list.lastChild)
+    }
     elements.forEach(el => {
         list.insertAdjacentHTML('beforeend', this.createElement(el))
     })
@@ -105,10 +103,10 @@ function getAvailableSelectNumberOptions() {
 }
 
 function renderSelectOptions(list) {
-    serialNumberOption.innerHTML = ''
+    selectSerialNumber.innerHTML = ''
     list.forEach(serialNumber => {
         const option = createOption(serialNumber, serialNumber)
-        serialNumberOption.appendChild(option)
+        selectSerialNumber.appendChild(option)
     })
 }
 
@@ -129,10 +127,17 @@ function createOption(value, text) {
 
 function generateFigureTypes(types) {
     types.forEach(el => {
-        serialFigureTypesSelect.appendChild(this.createOption(el, el))
+        selectFigureTypes.appendChild(this.createOption(el, el))
     })
 }
 generateFigureTypes(figureTypes)
+
+function generateColorOption(types) {
+    types.forEach(el => {
+        selectColor.appendChild(this.createOption(el, el))
+    })
+}
+generateColorOption(colorOption)
 
 function initForm() {
     this.updateSelectOptions()
